@@ -96,7 +96,7 @@ app.post('/login', function (req, res) {
 		if (!user) {
 			res.render('login.jade', { error: 'Invalid email or password' });
 		} else {
-			if (bcrypt.compareSync(req.body.password, user[0].password)) { // bcrypt.compareSync(req.body.password, user[0].password)
+			if (bcrypt.compareSync(req.body.password, user[0].password)) {
 				req.session.user = user[0];
 				res.redirect('/dashboard');
 			} else {
@@ -107,7 +107,6 @@ app.post('/login', function (req, res) {
 });
 
 app.get('/dashboard', requireLogin, function (req, res) {
-	// res.redirect('/login');
 	res.render('dashboard.jade');
 });
 
